@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 NAME
 
@@ -17,6 +17,11 @@ you can use in a dashboard and/or RT at glance. Summary can be displayed
 not only by user, but by users' organization or other fields. For example
 RequestorSummary portlet displays summary by requestors' organization.
 Read more about this below in L</CONFIGURATION> section.
+
+=head1 VERSION
+
+This module works on RT 3.8 with patches (see below) or on RT 4.0.
+It is not currently compatible with RT 4.2.
 
 =head1 INSTALLATION
 
@@ -32,8 +37,11 @@ L<DBIx::SearchBuilder> has been updated as well, and you need 1.56 or newer.
 
 Don't forget to B<register plugin> in the C<@Plugins> config option.
 
-To make a portlet available in the Web UI you B<must register> it in
-the RT config using C<$HomepageComponents> option.
+To make a F<OwnerSummary> or F<RequestorSummary> available in the Web UI
+you B<must register> it in the RT config using C<$HomepageComponents>
+option. Once a portlet is registered in C<$HomepageComponents> it can be
+added to your homepage using the Edit link on RT at a Glance, or added
+to a Dashboard.
 
 More portlets can be created using this extension. Look into the
 F<RequestorSummary> file, it just calls F<OwnerSummary> with arguments:
@@ -57,7 +65,8 @@ portlet in C<$HomepageComponents>, restart server and use new portlet.
 
 =head1 AUTHOR
 
-Ruslan Zakirov E<lt>Ruslan.Zakirov@gmail.comE<gt>
+    Ruslan Zakirov <Ruslan.Zakirov@gmail.com>
+    Kevin Falcone <falcone@bestpractical.com>
 
 =head1 LICENSE
 

@@ -8,6 +8,10 @@ DESCRIPTION
     RequestorSummary portlet displays summary by requestors' organization.
     Read more about this below in "CONFIGURATION" section.
 
+VERSION
+    This module works on RT 3.8 with patches (see below) or on RT 4.0. It is
+    not currently compatible with RT 4.2.
+
 INSTALLATION
     Installation goes as usual for RT extensions, but for older RT versions
     you have to apply patches. For more correct results and work without
@@ -21,8 +25,10 @@ INSTALLATION
 CONFIGURATION
     Don't forget to register plugin in the @Plugins config option.
 
-    To make a portlet available in the Web UI you must register it in the RT
-    config using $HomepageComponents option.
+    To make a OwnerSummary or RequestorSummary available in the Web UI you
+    must register it in the RT config using $HomepageComponents option. Once
+    a portlet is registered in $HomepageComponents it can be added to your
+    homepage using the Edit link on RT at a Glance, or added to a Dashboard.
 
     More portlets can be created using this extension. Look into the
     RequestorSummary file, it just calls OwnerSummary with arguments:
@@ -46,7 +52,8 @@ REPOSITORY
         http://github.com/ruz/RT-Extension-SummaryByUser
 
 AUTHOR
-    Ruslan Zakirov <Ruslan.Zakirov@gmail.com>
+        Ruslan Zakirov <Ruslan.Zakirov@gmail.com>
+        Kevin Falcone <falcone@bestpractical.com>
 
 LICENSE
     Under the same terms as perl itself.

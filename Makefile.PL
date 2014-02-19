@@ -6,4 +6,6 @@ readme_from('lib/RT/Extension/SummaryByUser.pm');
 
 requires 'DBIx::SearchBuilder' => '1.56';
 
+rt_too_new('4.2.0');
+
 WriteAll();
