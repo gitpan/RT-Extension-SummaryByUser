@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 =head1 NAME
 
@@ -37,11 +37,7 @@ May need root permissions
 
 =item Edit your F</opt/rt4/etc/RT_SiteConfig.pm>
 
-If you are using RT 4.2 or greater, add this line:
-
-    Plugin('RT::Extension::SummaryByUser');
-
-For RT 4.0, add this line:
+Add this line:
 
     Set(@Plugins, qw(RT::Extension::SummaryByUser));
 

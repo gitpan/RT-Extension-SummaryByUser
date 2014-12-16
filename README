@@ -18,11 +18,7 @@ INSTALLATION
         May need root permissions
 
     Edit your /opt/rt4/etc/RT_SiteConfig.pm
-        If you are using RT 4.2 or greater, add this line:
-
-            Plugin('RT::Extension::SummaryByUser');
-
-        For RT 4.0, add this line:
+        Add this line:
 
             Set(@Plugins, qw(RT::Extension::SummaryByUser));
 
