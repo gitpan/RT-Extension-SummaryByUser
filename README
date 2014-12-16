@@ -9,22 +9,31 @@ DESCRIPTION
     Read more about this below in "CONFIGURATION" section.
 
 VERSION
-    This module works on RT 3.8 with patches (see below) or on RT 4.0. It is
-    not currently compatible with RT 4.2.
+    This module works on RT 4.0. It is not currently compatible with RT 4.2.
 
 INSTALLATION
-    Installation goes as usual for RT extensions, but for older RT versions
-    you have to apply patches. For more correct results and work without
-    errors in any version prior to RT 3.8.5 you must apply patches that are
-    shipped with this distribution in the patches directory. First of all
-    apply RT-3.8.4-chart-improvements.patch then
-    RT-3.8-use_distinct_count_for_charts_when_required-2.patch. Also,
-    DBIx::SearchBuilder has been updated as well, and you need 1.56 or
-    newer.
+    perl Makefile.PL
+    make
+    make install
+        May need root permissions
+
+    Edit your /opt/rt4/etc/RT_SiteConfig.pm
+        If you are using RT 4.2 or greater, add this line:
+
+            Plugin('RT::Extension::SummaryByUser');
+
+        For RT 4.0, add this line:
+
+            Set(@Plugins, qw(RT::Extension::SummaryByUser));
+
+        or add RT::Extension::SummaryByUser to your existing @Plugins line.
+
+    Clear your mason cache
+            rm -rf /opt/rt4/var/mason_data/obj
+
+    Restart your webserver
 
 CONFIGURATION
-    Don't forget to register plugin in the @Plugins config option.
-
     To make a OwnerSummary or RequestorSummary available in the Web UI you
     must register it in the RT config using $HomepageComponents option. Once
     a portlet is registered in $HomepageComponents it can be added to your
@@ -48,13 +57,22 @@ CONFIGURATION
     register the new portlet in $HomepageComponents, restart server and use
     new portlet.
 
-REPOSITORY
-        http://github.com/ruz/RT-Extension-SummaryByUser
-
 AUTHOR
-        Ruslan Zakirov <Ruslan.Zakirov@gmail.com>
-        Kevin Falcone <falcone@bestpractical.com>
+    Best Practical Solutions, LLC <modules@bestpractical.com>
 
-LICENSE
-    Under the same terms as perl itself.
+BUGS
+    All bugs should be reported via email to
+
+        L<bug-RT-Extension-SummaryByUser@rt.cpan.org|mailto:bug-RT-Extension-SummaryByUser@rt.cpan.org>
+
+    or via the web at
+
+        L<rt.cpan.org|http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-SummaryByUser>.
+
+LICENSE AND COPYRIGHT
+    This software is Copyright (c) 2014 by Best Practical Solutions
+
+    This is free software, licensed under:
+
+      The GNU General Public License, Version 2, June 1991
 

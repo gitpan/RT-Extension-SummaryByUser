@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '0.06';
+our $VERSION = '1.00';
 
 =head1 NAME
 
@@ -20,22 +20,42 @@ Read more about this below in L</CONFIGURATION> section.
 
 =head1 VERSION
 
-This module works on RT 3.8 with patches (see below) or on RT 4.0.
-It is not currently compatible with RT 4.2.
+This module works on RT 4.0.  It is not currently compatible with RT
+4.2.
 
 =head1 INSTALLATION
 
-Installation goes as usual for RT extensions, but for older RT versions
-you have to apply patches. For more correct results and work without errors
-in any version prior to RT 3.8.5 you must B<apply patches> that are shipped
-with this distribution in the F<patches> directory. First of all apply
-F<RT-3.8.4-chart-improvements.patch> then
-F<RT-3.8-use_distinct_count_for_charts_when_required-2.patch>. Also,
-L<DBIx::SearchBuilder> has been updated as well, and you need 1.56 or newer.
+=over
+
+=item C<perl Makefile.PL>
+
+=item C<make>
+
+=item C<make install>
+
+May need root permissions
+
+=item Edit your F</opt/rt4/etc/RT_SiteConfig.pm>
+
+If you are using RT 4.2 or greater, add this line:
+
+    Plugin('RT::Extension::SummaryByUser');
+
+For RT 4.0, add this line:
+
+    Set(@Plugins, qw(RT::Extension::SummaryByUser));
+
+or add C<RT::Extension::SummaryByUser> to your existing C<@Plugins> line.
+
+=item Clear your mason cache
+
+    rm -rf /opt/rt4/var/mason_data/obj
+
+=item Restart your webserver
+
+=back
 
 =head1 CONFIGURATION
-
-Don't forget to B<register plugin> in the C<@Plugins> config option.
 
 To make a F<OwnerSummary> or F<RequestorSummary> available in the Web UI
 you B<must register> it in the RT config using C<$HomepageComponents>
@@ -59,18 +79,27 @@ You can copy this file into F<local/html/Elements> directory with different name
 for example with F<RequestorCountrySummary>, change arguments, register the new
 portlet in C<$HomepageComponents>, restart server and use new portlet.
 
-=head1 REPOSITORY
-
-    http://github.com/ruz/RT-Extension-SummaryByUser
-
 =head1 AUTHOR
 
-    Ruslan Zakirov <Ruslan.Zakirov@gmail.com>
-    Kevin Falcone <falcone@bestpractical.com>
+Best Practical Solutions, LLC E<lt>modules@bestpractical.comE<gt>
 
-=head1 LICENSE
+=head1 BUGS
 
-Under the same terms as perl itself.
+All bugs should be reported via email to
+
+    L<bug-RT-Extension-SummaryByUser@rt.cpan.org|mailto:bug-RT-Extension-SummaryByUser@rt.cpan.org>
+
+or via the web at
+
+    L<rt.cpan.org|http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-SummaryByUser>.
+
+=head1 LICENSE AND COPYRIGHT
+
+This software is Copyright (c) 2014 by Best Practical Solutions
+
+This is free software, licensed under:
+
+  The GNU General Public License, Version 2, June 1991
 
 =cut
 
